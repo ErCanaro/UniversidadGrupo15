@@ -20,19 +20,20 @@ public class Conexion {
     private Conexion(){};
     
     public static Connection getConexion(){
-        try {
-            //Cargar Driver  
-            Class.forName("org.mariadb.jdbc.Driver");
-            //Establecer la  CONEXION
-            conexion = DriverManager.getConnection(URL+BD,USER,PASS);
-            JOptionPane.showMessageDialog(null, "Conexion a " + BD + " establecida");
-            
-        } catch (ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, "Error al cargar los Drivers");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con la BD");
-        }
-        
+        if (conexion == null) {
+            try {
+                //Cargar Driver  
+                Class.forName("org.mariadb.jdbc.Driver");
+                //Establecer la  CONEXION
+                conexion = DriverManager.getConnection(URL + BD, USER, PASS);
+                JOptionPane.showMessageDialog(null, "Conexion a " + BD + " establecida");
+
+            } catch (ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, "Error al cargar los Drivers");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al conectar con la BD");
+            }
+        };
         return conexion;
     }
 }

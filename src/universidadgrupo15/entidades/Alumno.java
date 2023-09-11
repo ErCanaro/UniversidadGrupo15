@@ -32,6 +32,18 @@ public class Alumno {
         this.estado = estado;
     }
 
+    public Alumno(int idAlumno, int dni, String apellido, String nombre, LocalDate fechaNac) {
+        this.idAlumno = idAlumno;
+        this.dni = dni;
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.fechaNac = fechaNac;
+        this.estado = true;
+    }
+    
+    
+    
+
     public int getIdAlumno() {
         return idAlumno;
     }
@@ -82,7 +94,8 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return "Alumno{" + "idAlumno=" + idAlumno + ", dni=" + dni + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+        return "Alumno{" + "idAlumno=" + idAlumno + ", dni=" + dni 
+                + ", apellido=" + apellido + ", nombre=" + nombre  + "Fecha Nac: " + fechaNac + '}';
     }
     
     

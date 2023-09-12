@@ -42,7 +42,7 @@ public class MateriaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al cargar la materia");
         } catch (NullPointerException npe){
-            JOptionPane.showMessageDialog(null, "Algo no anda. "+ npe.getMessage());
+            JOptionPane.showMessageDialog(null, "Algo anda mal. "+ npe.getMessage());
         }
         
     

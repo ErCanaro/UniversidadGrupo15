@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import universidadgrupo15.entidades.Alumno;
 
 import universidadgrupo15.entidades.Materia;
 
@@ -44,6 +45,31 @@ public class MateriaData {
         } catch (NullPointerException npe){
             JOptionPane.showMessageDialog(null, "Algo anda mal. "+ npe.getMessage());
         }
-        
+    }
     
+        public Materia buscarMateriaPorID(int id) {
+        String sql = "SELECT * FROM materia WHERE idMateria =  ? AND estado = 1";
+
+        Materia materia = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeQuery();
+
+            ResultSet rs = ps.getResultSet();
+            if (rs.next()) {
+                materia = new Materia(rs.getInt("idMateria"), rs.getString("nombre"), rs.getInt("anio"), rs.getBoolean("estado"));
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe ninguna materia con el ID " + id);
+            }
+
+            ps.close();
+            System.out.println(materia);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la tabla materia");
+        }
+        return materia;
+
+    }
 }

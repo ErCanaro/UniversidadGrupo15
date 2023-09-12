@@ -2,13 +2,14 @@
 package universidadgrupo15.accesoADatos;
 
 import java.sql.Connection;
-import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import universidadgrupo15.entidades.Alumno;
+
 
 import universidadgrupo15.entidades.Materia;
 
@@ -72,4 +73,44 @@ public class MateriaData {
         return materia;
 
     }
+        public void modificarMateria(Materia materia){
+        String sql = "UPDATE materia SET nombre = ?, anio =?  WHERE idMateria = ?";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, materia.getNombre());
+            ps.setInt(2, materia.getAnio());
+            ps.setInt(3, materia.getIdMateria());
+            
+            int modificado = ps.executeUpdate();
+            
+            if (modificado == 1) {
+                JOptionPane.showMessageDialog(null, "La materia con el ID "+ materia.getIdMateria() + " ha sido modificado");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con al tabla");
+        }
+    }
+        public void borrarMateria(int id){
+        String sql = "UPDATE materia SET estado = ? WHERE idMateria = ?";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, 0);
+            ps.setInt(2, id);
+            
+            int modificado = ps.executeUpdate();
+            
+            if (modificado == 1) {
+                JOptionPane.showMessageDialog(null, "La materia con el ID "+ id + " ha sido borrado");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con al tabla");
+        }
+    }
+    
+       
+        
 }

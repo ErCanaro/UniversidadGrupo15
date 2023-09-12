@@ -35,7 +35,7 @@ public class UniversidadGrupo15 {
         
 //        matedata.AgregarMateria(mate);
         
-        matedata.buscarMateriaPorID(4);
+        matedata.buscarMateriaPorID(3);
         
     }
     

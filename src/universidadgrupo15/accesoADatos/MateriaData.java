@@ -7,8 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import universidadgrupo15.entidades.Alumno;
 
 
 import universidadgrupo15.entidades.Materia;
@@ -23,7 +26,7 @@ public class MateriaData {
     public Connection getCon() {
         return con;
     }
-    
+    //CRUD Create Read Update Delete
     public void AgregarMateria(Materia materia){
         String sql = "INSERT INTO materia (nombre, anio, estado)"
                 + "VALUES(?, ?, ?)";
@@ -65,7 +68,7 @@ public class MateriaData {
             }
 
             ps.close();
-            System.out.println(materia);
+            //System.out.println(materia);
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la tabla materia");
@@ -92,6 +95,7 @@ public class MateriaData {
             JOptionPane.showMessageDialog(null, "Error al conectar con al tabla");
         }
     }
+       
         public void borrarMateria(int id){
         String sql = "UPDATE materia SET estado = ? WHERE idMateria = ?";
         
@@ -109,8 +113,64 @@ public class MateriaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectar con al tabla");
         }
+        
+    }
+        
+        public void altaMateriaBorrada(int id){
+        String sql = "UPDATE materia SET estado = 1 WHERE idMateria = ?";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(2, id);
+            
+            int modificado = ps.executeUpdate();
+            
+            if (modificado == 1) {
+                JOptionPane.showMessageDialog(null, "La materia con el ID "+ id + " ha sido restablecida");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con al tabla");
+        }
+        
     }
     
+        //Listar Materias
+       public List<Materia> listarMaterias() {
+        String sql = "SELECT idMateria, nombre, anio FROM materia WHERE estado = 1 ";
+
+        ArrayList<Materia> listaMaterias = new ArrayList<>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.executeQuery();
+
+            ResultSet rs = ps.getResultSet();
+
+            while (rs.next()) {
+                Materia mate = new Materia();
+                mate.setIdMateria(rs.getInt("idMateria"));
+                mate.setNombre(rs.getString("nombre"));
+                mate.setAnio(rs.getInt("anio"));
+                //mate.setEstado(rs.getBoolean("estado"));
+
+                listaMaterias.add(mate);
+            }
+
+            if (listaMaterias.size() < 1) {
+                JOptionPane.showMessageDialog(null, "NO hay materias para mostrar");
+            }
+            ps.close();
+
+            for (Materia m : listaMaterias) {
+                System.out.println(m);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro al conectar con tabala Materia");
+        }
+
+        return listaMaterias;
+    }
        
         
 }

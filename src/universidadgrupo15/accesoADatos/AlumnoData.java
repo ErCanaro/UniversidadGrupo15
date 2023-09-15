@@ -136,7 +136,7 @@ public class AlumnoData {
             }
 
             ps.close();
-            System.out.println(alumno);
+            //System.out.println(alumno);
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la tabla alumno");
@@ -161,7 +161,6 @@ public class AlumnoData {
             } else {
                 JOptionPane.showMessageDialog(null, "No existe un alumno con el DNI " + dni);
             }
-
             ps.close();
             System.out.println(alumno);
 
@@ -169,7 +168,6 @@ public class AlumnoData {
             JOptionPane.showMessageDialog(null, "Error al conectar con la tabla alumno");
         }
         return alumno;
-
     }
     
     

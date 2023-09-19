@@ -1,13 +1,7 @@
 
 package universidadgrupo15;
 
-import java.time.LocalDate;
-import universidadgrupo15.accesoADatos.AlumnoData;
-import universidadgrupo15.accesoADatos.InscripcionData;
-import universidadgrupo15.accesoADatos.MateriaData;
-import universidadgrupo15.entidades.Alumno;
-import universidadgrupo15.entidades.Inscripcion;
-import universidadgrupo15.entidades.Materia;
+import universidadgrupo15.vistas.MenuPrincipal;
 
 
 public class UniversidadGrupo15 {
@@ -40,15 +34,15 @@ public class UniversidadGrupo15 {
 //        matedata.buscarMateriaPorID(3);
 
 //        matedata.listarMaterias();
-
-        AlumnoData alu = new AlumnoData();
-        MateriaData matedata = new MateriaData();
-        InscripcionData idata = new InscripcionData();
-        
-        Alumno alumnito= alu.buscarAlumnoPorID(1);
-        Materia mate = matedata.buscarMateriaPorID(2);
-        Inscripcion insc = new Inscripcion (4.6, mate, alumnito);
-        
+//
+//        AlumnoData alu = new AlumnoData();
+//        MateriaData matedata = new MateriaData();
+//        InscripcionData idata = new InscripcionData();
+//        
+//        Alumno alumnito= alu.buscarAlumnoPorID(1);
+//        Materia mate = matedata.buscarMateriaPorID(2);
+//        Inscripcion insc = new Inscripcion (4.6, mate, alumnito);
+//        
         //idata.crearInscripcion(insc);
         
         //idata.actualizarNota(1.0, alumnito.getIdAlumno(), mate.getIdMateria());
@@ -59,7 +53,9 @@ public class UniversidadGrupo15 {
         
         //idata.obtenerMateriasCursadasPorAlumno(1);
         //idata.obtenerMateriasNOCursadasPorAlumno(5);
-        idata.obtenerAlumnosPorMateria(2);
+//        idata.obtenerAlumnosPorMateria(2);
+
+        
     }
     
 }

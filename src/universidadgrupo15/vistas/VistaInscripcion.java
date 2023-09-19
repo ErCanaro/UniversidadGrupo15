@@ -5,17 +5,23 @@
  */
 package universidadgrupo15.vistas;
 
+import javax.swing.DefaultComboBoxModel;
+import universidadgrupo15.accesoADatos.AlumnoData;
+import universidadgrupo15.entidades.Alumno;
+
 /**
  *
  * @author Franco
  */
 public class VistaInscripcion extends javax.swing.JFrame {
-
+    private AlumnoData aludata = new AlumnoData();
+    DefaultComboBoxModel<Alumno> modelCB = new DefaultComboBoxModel<>();
     /**
      * Creates new form VistaAlumno
      */
     public VistaInscripcion() {
         initComponents();
+        cargarListaAlumnos();
     }
 
     /**
@@ -38,15 +44,13 @@ public class VistaInscripcion extends javax.swing.JFrame {
         jButtonEliminarAlum = new javax.swing.JButton();
         jButtonGuardarAlum = new javax.swing.JButton();
         jButtonSalirAlum = new javax.swing.JButton();
-        jComboBoxBuscarAlum = new javax.swing.JComboBox<>();
         jLabelTituloMate = new javax.swing.JLabel();
         jRadioButtonEstado1 = new javax.swing.JRadioButton();
+        jComboBoxBuscarAlum = new javax.swing.JComboBox<>();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setBackground(new java.awt.Color(153, 255, 255));
 
         jLabelTitulo.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(0, 0, 0));
@@ -89,11 +93,6 @@ public class VistaInscripcion extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxBuscarAlum.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBoxBuscarAlum.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
-        jComboBoxBuscarAlum.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBoxBuscarAlum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabelTituloMate.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
         jLabelTituloMate.setForeground(new java.awt.Color(0, 0, 0));
         jLabelTituloMate.setText("Listado de Materias");
@@ -110,21 +109,20 @@ public class VistaInscripcion extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabelBuscarAlum)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxBuscarAlum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addGap(25, 25, 25)
-                                    .addComponent(jButtonEliminarAlum)
-                                    .addGap(46, 46, 46)
-                                    .addComponent(jButtonGuardarAlum)
-                                    .addGap(62, 62, 62)
-                                    .addComponent(jButtonSalirAlum))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addGap(144, 144, 144)
-                                    .addComponent(jLabelTituloMate)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelBuscarAlum)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBoxBuscarAlum, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(jButtonEliminarAlum)
+                                .addGap(46, 46, 46)
+                                .addComponent(jButtonGuardarAlum)
+                                .addGap(62, 62, 62)
+                                .addComponent(jButtonSalirAlum))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(144, 144, 144)
+                                .addComponent(jLabelTituloMate))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
                                 .addComponent(jRadioButtonEstado)
@@ -140,7 +138,7 @@ public class VistaInscripcion extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,10 +148,10 @@ public class VistaInscripcion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelBuscarAlum)
                     .addComponent(jComboBoxBuscarAlum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                .addGap(43, 43, 43)
                 .addComponent(jLabelTituloMate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,6 +226,7 @@ public class VistaInscripcion extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new VistaInscripcion().setVisible(true);
             }
         });
@@ -238,7 +237,7 @@ public class VistaInscripcion extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEliminarAlum;
     private javax.swing.JButton jButtonGuardarAlum;
     private javax.swing.JButton jButtonSalirAlum;
-    private javax.swing.JComboBox<String> jComboBoxBuscarAlum;
+    private javax.swing.JComboBox<Alumno> jComboBoxBuscarAlum;
     private javax.swing.JLabel jLabelApellido;
     private javax.swing.JLabel jLabelBuscarAlum;
     private javax.swing.JLabel jLabelNombre;
@@ -249,4 +248,13 @@ public class VistaInscripcion extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButtonEstado1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+
+   public void cargarListaAlumnos(){
+      
+       for(Alumno a : aludata.listarAlumnos()){
+          modelCB.addElement(a);
+       }
+       jComboBoxBuscarAlum.setModel(modelCB);
+       
+   }
 }

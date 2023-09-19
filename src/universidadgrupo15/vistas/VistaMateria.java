@@ -49,8 +49,6 @@ public class VistaMateria extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(153, 255, 255));
-
         jLabelTitulo.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(0, 0, 0));
         jLabelTitulo.setText("Formulario Materia");
@@ -88,7 +86,6 @@ public class VistaMateria extends javax.swing.JFrame {
             }
         });
 
-        jRadioButtonEstado.setBackground(new java.awt.Color(153, 255, 255));
         jRadioButtonEstado.setFont(new java.awt.Font("Candara", 1, 12)); // NOI18N
 
         jButtonBuscar.setBackground(new java.awt.Color(255, 255, 255));

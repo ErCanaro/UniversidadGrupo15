@@ -120,7 +120,7 @@ public class AlumnoData {
        
     //Buscar alumno por ID
     public Alumno buscarAlumnoPorID(int id) {
-        String sql = "SELECT * FROM alumno WHERE idAlumno =  ? AND estado = 1";
+        String sql = "SELECT * FROM alumno WHERE idAlumno = ?";
 
         Alumno alumno = null;
         try {
@@ -147,7 +147,7 @@ public class AlumnoData {
     
     //Buscar alumno por ID
     public Alumno buscarAlumnoPorDni(int dni) {
-        String sql = "SELECT * FROM alumno WHERE dni =  ? AND estado = 1";
+        String sql = "SELECT * FROM alumno WHERE dni =  ?";
 
         Alumno alumno = null;
         try {

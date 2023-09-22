@@ -306,20 +306,21 @@ public class VistaMateriaIF extends javax.swing.JInternalFrame {
         Materia materia = null;
         try{
             if (jTFidMateria.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Ingrese ID o DNI");
+                JOptionPane.showMessageDialog(this, "Ingrese ID para la materia");
                 return;
             }else {
                 int id =  Integer.parseInt(jTFidMateria.getText());      
                 materia = matedata.buscarMateriaPorID(id);
             }
-
+            
+            
                 jTFidMateria.setText(String.valueOf(materia.getIdMateria()));
                 jTFNombre.setText(materia.getNombre());
                 jTFAnio.setText(String.valueOf(materia.getAnio()));
                 jRBEstado.setSelected(materia.isEstado());
 
             } catch (NullPointerException npe) {
-                JOptionPane.showMessageDialog(this, "Valor de IjTFAnioI inválido o inexistente");
+                JOptionPane.showMessageDialog(this, "Valor de ID inválido o inexistente");
                 limpiar();
             } catch (NumberFormatException nfe){
                 JOptionPane.showMessageDialog(this, "No se introdujo un valor Válido");

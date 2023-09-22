@@ -58,6 +58,8 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
         jBInscribir = new javax.swing.JButton();
         jBAnularInscipcion = new javax.swing.JButton();
 
+        setClosable(true);
+
         jLabel1.setText("Gestión de Incripciones");
 
         jRBMateriasCursadas.setText("Materias Inscriptas");

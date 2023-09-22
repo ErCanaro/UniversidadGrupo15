@@ -52,7 +52,7 @@ public class MateriaData {
     }
     
         public Materia buscarMateriaPorID(int id) {
-        String sql = "SELECT * FROM materia WHERE idMateria =  ? AND estado = 1";
+        String sql = "SELECT * FROM materia WHERE idMateria =  ?";
 
         Materia materia = null;
         try {
@@ -74,8 +74,34 @@ public class MateriaData {
             JOptionPane.showMessageDialog(null, "Error al conectar con la tabla materia");
         }
         return materia;
-
     }
+        
+        
+        public Materia buscarMateriaPorNombre(String nombre) {
+        String sql = "SELECT * FROM materia WHERE materia.nombre =  ?";
+
+        Materia materia = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, nombre);
+            ps.executeQuery();
+
+            ResultSet rs = ps.getResultSet();
+            if (rs.next()) {
+                materia = new Materia(rs.getInt("idMateria"), rs.getString("nombre"), rs.getInt("anio"), rs.getBoolean("estado"));
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe ninguna materia con el Nombre " + nombre);
+            }
+
+            ps.close();
+            //System.out.println(materia);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la tabla materia");
+        }
+        return materia;
+    }
+        
         public void modificarMateria(Materia materia){
         String sql = "UPDATE materia SET nombre = ?, anio =?  WHERE idMateria = ?";
         

@@ -231,7 +231,7 @@ public class InscripcionData {
      public List<Alumno> obtenerAlumnosPorMateria(int idMateria) {
          ArrayList<Alumno> listaAlumnosPorMateria = new ArrayList<>();
          
-         String sql = "SELECT inscripcion.idAlumno FROM inscripcion WHERE inscripcion.idMateria = ?";
+         String sql = "SELECT DISTINCT inscripcion.idAlumno FROM inscripcion WHERE inscripcion.idMateria = ?";
          
         try {
             PreparedStatement ps = con.prepareStatement(sql);

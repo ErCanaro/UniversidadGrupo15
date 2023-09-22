@@ -1,6 +1,8 @@
 
 package universidadgrupo15.entidades;
 
+import com.sun.javafx.binding.StringFormatter;
+
 
 public class Materia {
     private int idMateria;
@@ -58,8 +60,11 @@ public class Materia {
 
     @Override
     public String toString() {
-        return "Materia{" + "idMateria=" + idMateria + ", nombre=" + nombre + ", anio=" + anio + '}';
+        //return "Materia{" + "idMateria=" + idMateria + ", nombre=" + nombre + ", anio=" + anio + '}';
+        return String.format("ID:%-3s %-20s Año: %-3s", this.idMateria, this.nombre, this.anio);
     }
     
-    
+     public String toStringCB() {
+         return String.format("ID:%-3s %-20s Año: %-3s", this.idMateria, this.nombre, this.anio);
+    }
 }

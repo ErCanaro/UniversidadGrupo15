@@ -5,23 +5,17 @@
  */
 package universidadgrupo15.vistas;
 
-import javax.swing.DefaultComboBoxModel;
-import universidadgrupo15.accesoADatos.AlumnoData;
-import universidadgrupo15.entidades.Alumno;
-
 /**
  *
  * @author Franco
  */
-public class VistaInscripcion extends javax.swing.JFrame {
-    private AlumnoData aludata = new AlumnoData();
-    DefaultComboBoxModel<Alumno> modelCB = new DefaultComboBoxModel<>();
+public class VistaInscripcion extends javax.swing.JInternalFrame {
+
     /**
-     * Creates new form VistaAlumno
+     * Creates new form VistaInscripcion
      */
     public VistaInscripcion() {
         initComponents();
-        cargarListaAlumnos();
     }
 
     /**
@@ -33,228 +27,21 @@ public class VistaInscripcion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabelTitulo = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabelBuscarAlum = new javax.swing.JLabel();
-        jLabelApellido = new javax.swing.JLabel();
-        jLabelNombre = new javax.swing.JLabel();
-        jRadioButtonEstado = new javax.swing.JRadioButton();
-        jButtonEliminarAlum = new javax.swing.JButton();
-        jButtonGuardarAlum = new javax.swing.JButton();
-        jButtonSalirAlum = new javax.swing.JButton();
-        jLabelTituloMate = new javax.swing.JLabel();
-        jRadioButtonEstado1 = new javax.swing.JRadioButton();
-        jComboBoxBuscarAlum = new javax.swing.JComboBox<>();
-
-        jButton1.setText("jButton1");
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabelTitulo.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
-        jLabelTitulo.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelTitulo.setText("Formulario Alumno");
-
-        jLabelBuscarAlum.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelBuscarAlum.setText("Seleccione un alumno:");
-
-        jLabelApellido.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelApellido.setText("Materias Inscriptas");
-
-        jLabelNombre.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelNombre.setText("Materias no inscriptas");
-
-        jRadioButtonEstado.setBackground(new java.awt.Color(153, 255, 255));
-        jRadioButtonEstado.setFont(new java.awt.Font("Candara", 1, 12)); // NOI18N
-
-        jButtonEliminarAlum.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonEliminarAlum.setFont(new java.awt.Font("Candara", 1, 12)); // NOI18N
-        jButtonEliminarAlum.setForeground(new java.awt.Color(0, 0, 0));
-        jButtonEliminarAlum.setText("Eliminar");
-
-        jButtonGuardarAlum.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonGuardarAlum.setFont(new java.awt.Font("Candara", 1, 12)); // NOI18N
-        jButtonGuardarAlum.setForeground(new java.awt.Color(0, 0, 0));
-        jButtonGuardarAlum.setText("Guardar");
-        jButtonGuardarAlum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGuardarAlumActionPerformed(evt);
-            }
-        });
-
-        jButtonSalirAlum.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonSalirAlum.setFont(new java.awt.Font("Candara", 1, 12)); // NOI18N
-        jButtonSalirAlum.setForeground(new java.awt.Color(0, 0, 0));
-        jButtonSalirAlum.setText("Salir");
-        jButtonSalirAlum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSalirAlumActionPerformed(evt);
-            }
-        });
-
-        jLabelTituloMate.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
-        jLabelTituloMate.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelTituloMate.setText("Listado de Materias");
-
-        jRadioButtonEstado1.setBackground(new java.awt.Color(153, 255, 255));
-        jRadioButtonEstado1.setFont(new java.awt.Font("Candara", 1, 12)); // NOI18N
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabelBuscarAlum)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBoxBuscarAlum, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(jButtonEliminarAlum)
-                                .addGap(46, 46, 46)
-                                .addComponent(jButtonGuardarAlum)
-                                .addGap(62, 62, 62)
-                                .addComponent(jButtonSalirAlum))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(144, 144, 144)
-                                .addComponent(jLabelTituloMate))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jRadioButtonEstado)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelApellido)
-                                .addGap(103, 103, 103)
-                                .addComponent(jRadioButtonEstado1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelNombre))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(jLabelTitulo))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabelTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelBuscarAlum)
-                    .addComponent(jComboBoxBuscarAlum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
-                .addComponent(jLabelTituloMate)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jRadioButtonEstado)
-                                .addGap(34, 34, 34))
-                            .addComponent(jRadioButtonEstado1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelNombre, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(166, 166, 166)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonEliminarAlum)
-                            .addComponent(jButtonGuardarAlum)
-                            .addComponent(jButtonSalirAlum)))
-                    .addComponent(jLabelApellido))
-                .addContainerGap(64, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 394, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 274, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonSalirAlumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirAlumActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonSalirAlumActionPerformed
-
-    private void jButtonGuardarAlumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarAlumActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonGuardarAlumActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaInscripcion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaInscripcion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaInscripcion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaInscripcion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                
-                new VistaInscripcion().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButtonEliminarAlum;
-    private javax.swing.JButton jButtonGuardarAlum;
-    private javax.swing.JButton jButtonSalirAlum;
-    private javax.swing.JComboBox<Alumno> jComboBoxBuscarAlum;
-    private javax.swing.JLabel jLabelApellido;
-    private javax.swing.JLabel jLabelBuscarAlum;
-    private javax.swing.JLabel jLabelNombre;
-    private javax.swing.JLabel jLabelTitulo;
-    private javax.swing.JLabel jLabelTituloMate;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButtonEstado;
-    private javax.swing.JRadioButton jRadioButtonEstado1;
-    private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
-
-   public void cargarListaAlumnos(){
-      
-       for(Alumno a : aludata.listarAlumnos()){
-          modelCB.addElement(a);
-       }
-       jComboBoxBuscarAlum.setModel(modelCB);
-       
-   }
 }

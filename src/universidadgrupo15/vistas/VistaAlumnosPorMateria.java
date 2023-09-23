@@ -26,6 +26,7 @@ public class VistaAlumnosPorMateria extends javax.swing.JInternalFrame {
         initComponents();
         crearEncabezadosTabla();
         cargarComboBoxMaterias();
+        
     }
 
     /**
@@ -122,11 +123,12 @@ public class VistaAlumnosPorMateria extends javax.swing.JInternalFrame {
     private void crearEncabezadosTabla(){
        
         
-        modeloTabla.addColumn("id");
+        modeloTabla.addColumn("Código");
         modeloTabla.addColumn("DNI");
         modeloTabla.addColumn("Apellido");
         modeloTabla.addColumn("Nombre");
         
+        jTable1.setDefaultEditor(Object.class, null);
         jTable1.setModel(modeloTabla);
     }
 
@@ -150,5 +152,6 @@ public class VistaAlumnosPorMateria extends javax.swing.JInternalFrame {
         }
         
         jTable1.setModel(modeloTabla);
+        
     }
 }

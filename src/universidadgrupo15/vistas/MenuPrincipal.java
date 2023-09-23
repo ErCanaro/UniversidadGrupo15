@@ -36,6 +36,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuAdmin = new javax.swing.JMenu();
         jMIInscripciones = new javax.swing.JMenuItem();
         jMIVistaNotas = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuConsultas = new javax.swing.JMenu();
         jMIAlumnoPorMateria = new javax.swing.JMenuItem();
         jMenuSalir = new javax.swing.JMenu();
@@ -103,6 +104,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenuAdmin.add(jMIVistaNotas);
+
+        jMenuItem3.setText("Gestion Notas v2");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenuAdmin.add(jMenuItem3);
 
         jMenuBar1.add(jMenuAdmin);
 
@@ -186,6 +195,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
        jDPEscritorio.moveToFront(vn);
     }//GEN-LAST:event_jMIVistaNotasActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+       jDPEscritorio.removeAll();
+       jDPEscritorio.repaint();
+       VistaNotas2CB vn2cb = new VistaNotas2CB();
+       vn2cb.setVisible(true);
+       jDPEscritorio.add(vn2cb);
+       jDPEscritorio.moveToFront(vn2cb);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -232,6 +250,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuConsultas;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenu jMenuMateria;
     private javax.swing.JMenu jMenuSalir;
     // End of variables declaration//GEN-END:variables

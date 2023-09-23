@@ -23,7 +23,11 @@ public class VistaNotas extends javax.swing.JInternalFrame {
     AlumnoData aludata = new AlumnoData();
     InscripcionData idata = new InscripcionData();
     DefaultComboBoxModel  modeloCB = new DefaultComboBoxModel();
-    DefaultTableModel modeloTabla = new DefaultTableModel();
+    DefaultTableModel modeloTabla = new DefaultTableModel() { @Override
+     public boolean isCellEditable(int row, int column) {
+          return column == 2;
+	}
+     };
     
     
     /**
@@ -155,7 +159,7 @@ public class VistaNotas extends javax.swing.JInternalFrame {
     }
 
     private void crearEncabezadosTabla(){
-        modeloTabla.addColumn("id");
+        modeloTabla.addColumn("Código");
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Nota");
 

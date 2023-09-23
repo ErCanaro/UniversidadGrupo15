@@ -284,7 +284,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLidAlumno">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ID "/>
+            <Property name="text" type="java.lang.String" value="C&#xf3;digo"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFNombre">

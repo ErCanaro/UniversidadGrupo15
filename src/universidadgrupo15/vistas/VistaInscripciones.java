@@ -6,6 +6,7 @@
 package universidadgrupo15.vistas;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import universidadgrupo15.accesoADatos.AlumnoData;
 import universidadgrupo15.accesoADatos.InscripcionData;
@@ -229,7 +230,7 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
     }
 
     private void crearEncabezadosTabla(){
-        modeloTabla.addColumn("id");
+        modeloTabla.addColumn("Código");
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Año");
 
@@ -260,17 +261,31 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
     
     private void inscribir(){
         Alumno alu = (Alumno) jCBAlumno.getSelectedItem();
+        
+        if (jTMaterias.getSelectedRow()!=-1 ) {
         Materia mate = mateData.buscarMateriaPorID((int)jTMaterias.getValueAt(jTMaterias.getSelectedRow(), 0));
         
         Inscripcion inscrip = new Inscripcion(0, mate, alu);
         
         idata.crearInscripcion(inscrip);
+        }else {
+            JOptionPane.showMessageDialog(this, "Selecciona una Materia para inscribir");
+        }
     }
     
     private void anularInscripcion(){
         Alumno alu = (Alumno) jCBAlumno.getSelectedItem();
-        Materia mate = mateData.buscarMateriaPorID((int)jTMaterias.getValueAt(jTMaterias.getSelectedRow(), 0));
         
-        idata.borrarNota(alu.getIdAlumno(), (int)jTMaterias.getValueAt(jTMaterias.getSelectedRow(), 0));
+        if (jTMaterias.getSelectedRow()!=-1 ) {
+        int id = (int)jTMaterias.getValueAt(jTMaterias.getSelectedRow(), 0);
+        
+        
+            Materia mate = mateData.buscarMateriaPorID(id);
+            idata.borrarNota(alu.getIdAlumno(), (int) jTMaterias.getValueAt(jTMaterias.getSelectedRow(), 0));
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecciona una inscripcion para anular");
+        }
+               
+        
     }
 }

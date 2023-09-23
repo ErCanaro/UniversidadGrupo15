@@ -25,6 +25,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
      */
     public VistaAlumno() {
         initComponents();
+        deshabilitarBotones();
     }
 
     /**
@@ -66,7 +67,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
 
         jTFidAlumno.setEnabled(false);
 
-        jLidAlumno.setText("ID ");
+        jLidAlumno.setText("Código");
 
         jLApellido.setText("Apellido *");
 
@@ -194,7 +195,6 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
                     .addComponent(jTFApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLApellido)
                     .addComponent(jBActualizar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -207,7 +207,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBLimpiar)
-                        .addContainerGap(12, Short.MAX_VALUE))
+                        .addContainerGap(14, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLApellido1)
@@ -260,13 +260,12 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "No se introdujo un valor Válido");
             limpiar();
         }
-        
-      
-        
+      deshabilitarBotones();
     }//GEN-LAST:event_jBBuscasActionPerformed
 
     private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
         limpiar();
+        deshabilitarBotones();
     }//GEN-LAST:event_jBLimpiarActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
@@ -286,12 +285,13 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         }catch (NullPointerException npe) {
             JOptionPane.showMessageDialog(this, "Datos insuficientes para crear un alumno");
         }
-        
+        deshabilitarBotones();
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBorrarActionPerformed
         aludata.borrarAlumno(Integer.parseInt(jTFidAlumno.getText()));
         jRBEstado.setSelected(false);
+        deshabilitarBotones();
     }//GEN-LAST:event_jBBorrarActionPerformed
 
     private void jBActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBActualizarActionPerformed
@@ -305,11 +305,13 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         
         //Asigna los datos en pantalla al alumno
         aludata.modificarAlumno(alumno);
+        deshabilitarBotones();
     }//GEN-LAST:event_jBActualizarActionPerformed
 
     private void jBRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRestaurarActionPerformed
         aludata.altaAlumnoBorrado(Integer.parseInt(jTFidAlumno.getText()));
         jRBEstado.setSelected(true);
+        deshabilitarBotones();
     }//GEN-LAST:event_jBRestaurarActionPerformed
 
 
@@ -346,5 +348,19 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         jTFNombre.setText("");
         jDateChooser1.setDate(null);
         jRBEstado.setSelected(false);
+    }
+    
+     private void deshabilitarBotones(){
+        
+        if(jTFidAlumno.getText().isEmpty()){
+            jBRestaurar.setEnabled(false);
+            jBBorrar.setEnabled(false);
+        } else if (jRBEstado.isSelected()){
+            jBBorrar.setEnabled(true);
+            jBRestaurar.setEnabled(false);
+        }else {
+            jBBorrar.setEnabled(false);
+            jBRestaurar.setEnabled(true);
+        }
     }
 }

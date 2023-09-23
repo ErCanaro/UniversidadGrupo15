@@ -86,7 +86,7 @@ public class InscripcionData {
 
             int filas = ps.executeUpdate();
             if (filas >= 0) {
-                JOptionPane.showMessageDialog(null, "Nota BORRADA PARA SIEMPRE");
+                JOptionPane.showMessageDialog(null, "Inscripcion anulada");
             }
 
             ps.close();
@@ -118,9 +118,9 @@ public class InscripcionData {
                 listaInscripciones.add(insc);
             }
             
-            for(Inscripcion  i : listaInscripciones){
-                System.out.println(i);
-            }
+//            for(Inscripcion  i : listaInscripciones){
+//                System.out.println(i);
+//            }
             ps.close();
             
         } catch (SQLException ex) {
@@ -152,9 +152,9 @@ public class InscripcionData {
                 listaInscripcionesPorAlumno.add(insc);
             }
             
-            for(Inscripcion  i : listaInscripcionesPorAlumno){
-                System.out.println(i);
-            }
+//            for(Inscripcion  i : listaInscripcionesPorAlumno){
+//                System.out.println(i);
+//            }
             ps.close();
 
         } catch (SQLException ex) {
@@ -182,9 +182,9 @@ public class InscripcionData {
                 listaMateriasCursadasPorAlumno.add(mate);
             }
             
-            for(Materia m : listaMateriasCursadasPorAlumno){
-                System.out.println(m);
-            }
+//            for(Materia m : listaMateriasCursadasPorAlumno){
+//                System.out.println(m);
+//            }
             ps.close();
             
         } catch (SQLException ex) {
@@ -214,9 +214,9 @@ public class InscripcionData {
                 listaMateriasNOCursadasPorAlumno.add(mate);
             }
             
-            for(Materia m : listaMateriasNOCursadasPorAlumno){
-                System.out.println(m);
-            }
+//            for(Materia m : listaMateriasNOCursadasPorAlumno){
+//                System.out.println(m);
+//            }
             ps.close();
             
         } catch (SQLException ex) {
@@ -249,10 +249,9 @@ public class InscripcionData {
                 listaAlumnosPorMateria.add(alu);
             }
              
-            
-            for(Alumno a : listaAlumnosPorMateria){
-                System.out.println(a);
-            }
+//            for(Alumno a : listaAlumnosPorMateria){
+//                System.out.println(a);
+//            }
             ps.close();
             
             
@@ -263,4 +262,48 @@ public class InscripcionData {
          return listaAlumnosPorMateria;
      }
      
+     public Inscripcion buscarNotaPorAlumnoyMateria(Alumno a, Materia m) {
+         String sql = "SELECT * FROM inscripcion WHERE idAlumno = ? AND idMateria = ?";
+         
+         Inscripcion insc = new Inscripcion();
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, a.getIdAlumno());
+            ps.setInt(2, m.getIdMateria());
+            
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                insc.setNota(rs.getDouble("nota"));
+                insc.setAlumno(adata.buscarAlumnoPorID(rs.getInt("idAlumno")));
+                insc.setMateria(mdata.buscarMateriaPorID(rs.getInt("idMateria")));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar a la tabla Inscripcion");
+        } 
+         return insc;
+     }
+     
+     public List<Alumno> listaAlumnosConInscripcion() {
+         String sql =  "SELECT DISTINCT idAlumno FROM inscripcion WHERE idAlumno IS NOT null AND idMateria IS NOT null";
+         
+         ArrayList<Alumno> listaAlumnosConInscripcion = new ArrayList<>();
+         
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()){
+                Alumno alu = adata.buscarAlumnoPorID(rs.getInt("idAlumno"));
+                listaAlumnosConInscripcion.add(alu);
+            }
+            
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar a la tabla Inscripcion");
+        }
+        return listaAlumnosConInscripcion;
+     }
 }

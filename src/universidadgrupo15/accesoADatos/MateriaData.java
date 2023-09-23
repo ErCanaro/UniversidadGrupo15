@@ -143,10 +143,11 @@ public class MateriaData {
     }
         
         public void altaMateriaBorrada(int id){
-        String sql = "UPDATE materia SET estado = 1 WHERE idMateria = ?";
+        String sql = "UPDATE materia SET materia.estado = ? WHERE idMateria = ?";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, 1);
             ps.setInt(2, id);
             
             int modificado = ps.executeUpdate();
@@ -187,9 +188,9 @@ public class MateriaData {
             }
             ps.close();
 
-            for (Materia m : listaMaterias) {
-                System.out.println(m);
-            }
+//            for (Materia m : listaMaterias) {
+//                System.out.println(m);
+//            }
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro al conectar con tabala Materia");

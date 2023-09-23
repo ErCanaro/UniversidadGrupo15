@@ -26,6 +26,7 @@ public class VistaMateriaIF extends javax.swing.JInternalFrame {
      */
     public VistaMateriaIF() {
         initComponents();
+        deshabilitarBotones();
     }
 
     /**
@@ -184,7 +185,7 @@ public class VistaMateriaIF extends javax.swing.JInternalFrame {
 
         jLEstado.setText("Estado");
 
-        jLidAlumno.setText("ID ");
+        jLidAlumno.setText("Código");
 
         jLayeredPane2.setLayer(jRBEstado, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(jTFAnio, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -299,7 +300,7 @@ public class VistaMateriaIF extends javax.swing.JInternalFrame {
         }catch (NullPointerException npe) {
             JOptionPane.showMessageDialog(this, "Datos insuficientes para crear materia");
         }
-
+        deshabilitarBotones();
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBBuscasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscasActionPerformed
@@ -326,7 +327,7 @@ public class VistaMateriaIF extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "No se introdujo un valor Válido");
                 limpiar();
             }
-
+        deshabilitarBotones();
     }//GEN-LAST:event_jBBuscasActionPerformed
 
     private void jBActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBActualizarActionPerformed
@@ -339,20 +340,27 @@ public class VistaMateriaIF extends javax.swing.JInternalFrame {
 
         //Asigna los datos en pantalla al alumno
         matedata.modificarMateria(materia);
+        deshabilitarBotones();
     }//GEN-LAST:event_jBActualizarActionPerformed
 
     private void jBRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRestaurarActionPerformed
+        System.out.println(Integer.parseInt(jTFidMateria.getText()));
         matedata.altaMateriaBorrada(Integer.parseInt(jTFidMateria.getText()));
         jRBEstado.setSelected(true);
+        deshabilitarBotones();
+        
     }//GEN-LAST:event_jBRestaurarActionPerformed
 
     private void jBBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBorrarActionPerformed
         matedata.borrarMateria(Integer.parseInt(jTFidMateria.getText()));
         jRBEstado.setSelected(false);
+        deshabilitarBotones();
+        
     }//GEN-LAST:event_jBBorrarActionPerformed
 
     private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
         limpiar();
+        deshabilitarBotones();
     }//GEN-LAST:event_jBLimpiarActionPerformed
 
 
@@ -379,10 +387,24 @@ public class VistaMateriaIF extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTFidMateria;
     // End of variables declaration//GEN-END:variables
    
-    public void limpiar() {
+    private void limpiar() {
         jTFidMateria.setText("");
         jTFAnio.setText("");
         jTFNombre.setText("");
         jRBEstado.setSelected(false);
+    }
+    
+    private void deshabilitarBotones(){
+        
+        if(jTFidMateria.getText().isEmpty()){
+            jBRestaurar.setEnabled(false);
+            jBBorrar.setEnabled(false);
+        } else if (jRBEstado.isSelected()){
+            jBBorrar.setEnabled(true);
+            jBRestaurar.setEnabled(false);
+        }else {
+            jBBorrar.setEnabled(false);
+            jBRestaurar.setEnabled(true);
+        }
     }
 }

@@ -179,7 +179,19 @@ public class VistaMateriaIF extends javax.swing.JInternalFrame {
         jRBEstado.setText("Activo");
         jRBEstado.setEnabled(false);
 
+        jTFAnio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFAnioKeyTyped(evt);
+            }
+        });
+
         jLDNI.setText("Año");
+
+        jTFidMateria.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFidMateriaKeyTyped(evt);
+            }
+        });
 
         jLApellido1.setText("Nombre *");
 
@@ -362,6 +374,20 @@ public class VistaMateriaIF extends javax.swing.JInternalFrame {
         limpiar();
         deshabilitarBotones();
     }//GEN-LAST:event_jBLimpiarActionPerformed
+
+    private void jTFAnioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFAnioKeyTyped
+        String str = jTFAnio.getText() + evt.getKeyChar();
+                if (!str.matches("[1-8]")) {
+                    evt.consume(); // Consumir el evento para evitar que se escriba el carácter
+                }
+    }//GEN-LAST:event_jTFAnioKeyTyped
+
+    private void jTFidMateriaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFidMateriaKeyTyped
+         String str = jTFidMateria.getText() + evt.getKeyChar();
+                if (!str.matches("\\d{1,3}")) {
+                    evt.consume(); // Consumir el evento para evitar que se escriba el carácter
+                }
+    }//GEN-LAST:event_jTFidMateriaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

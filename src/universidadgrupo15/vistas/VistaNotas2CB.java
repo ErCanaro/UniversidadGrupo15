@@ -187,10 +187,7 @@ public class VistaNotas2CB extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTFNotaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNotaKeyTyped
-        char c = evt.getKeyChar();
-        if (!Character.isDigit(c) && c != '.') {
-        evt.consume();
-        }
+       
         
     }//GEN-LAST:event_jTFNotaKeyTyped
 

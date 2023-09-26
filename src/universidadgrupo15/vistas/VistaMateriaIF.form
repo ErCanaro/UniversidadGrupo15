@@ -264,6 +264,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFAnio">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFAnioKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLDNI">
           <Properties>
@@ -271,6 +274,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFidMateria">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFidMateriaKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLApellido1">
           <Properties>

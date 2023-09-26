@@ -87,7 +87,15 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTMaterias);
 
         jCBAlumno.addActionListener(new java.awt.event.ActionListener() {
@@ -234,7 +242,9 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Año");
 
+        jTMaterias.setDefaultEditor(Object.class, null);
         jTMaterias.setModel(modeloTabla);
+        
     }
     
     private void cargarTablaInscriptas(){

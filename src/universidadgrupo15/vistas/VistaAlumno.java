@@ -5,6 +5,7 @@
  */
 package universidadgrupo15.vistas;
 
+import java.awt.Color;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Month;
@@ -71,7 +72,19 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
 
         jLApellido.setText("Apellido *");
 
+        jTFApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFApellidoKeyTyped(evt);
+            }
+        });
+
         jLApellido1.setText("Nombre *");
+
+        jTFNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFNombreKeyTyped(evt);
+            }
+        });
 
         jLApellido2.setText("Fecha Nac*");
 
@@ -107,6 +120,15 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         jBActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBActualizarActionPerformed(evt);
+            }
+        });
+
+        jTFDNI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFDNIKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFDNIKeyTyped(evt);
             }
         });
 
@@ -190,11 +212,15 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
                     .addComponent(jTFDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLDNI)
                     .addComponent(jBGuardar))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTFApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLApellido)
-                    .addComponent(jBActualizar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jBActualizar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTFApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLApellido))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -232,19 +258,14 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
     private void jBBuscasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscasActionPerformed
         Alumno alumno = null;
         try{
-        if (jTFidAlumno.getText().isEmpty()) {
-                if(jTFDNI.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Ingrese ID o DNI");
-                    return;
-                }else {
-                    int dni = Integer.parseInt(jTFDNI.getText());
-                    alumno = aludata.buscarAlumnoPorDni(dni);
-                }
-            }else {
-            int id =  Integer.parseInt(jTFidAlumno.getText());
-            alumno = aludata.buscarAlumnoPorID(id);
-        }
-                     
+      
+            if (jTFDNI.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Ingrese DNI");
+            } else {
+                int dni = Integer.parseInt(jTFDNI.getText());
+                alumno = aludata.buscarAlumnoPorDni(dni);
+            }
+    
         jTFidAlumno.setText(String.valueOf(alumno.getIdAlumno()));
         jTFDNI.setText(String.valueOf(alumno.getDni()));
         jTFApellido.setText(alumno.getApellido());
@@ -254,7 +275,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
           
         
         } catch (NullPointerException npe) {
-            JOptionPane.showMessageDialog(this, "Valor de ID o DNI inválido o inexistente");
+            JOptionPane.showMessageDialog(this, "Valor de DNI inválido o inexistente");
             limpiar();
         } catch (NumberFormatException nfe){
             JOptionPane.showMessageDialog(this, "No se introdujo un valor Válido");
@@ -271,19 +292,23 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         Alumno alumno = new Alumno();
         
-        
+        try {
         LocalDate ld = jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         
+        if (jTFApellido.getText().isEmpty() || jTFNombre.getText().isEmpty() || jTFDNI.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Hay campos vacíos");
+            return;
+        }
         alumno.setDni(Integer.parseInt(jTFDNI.getText()));
         alumno.setApellido(jTFApellido.getText());
         alumno.setNombre(jTFNombre.getText());
         alumno.setFechaNac(ld);
-        alumno.setEstado(jRBEstado.isSelected());
+        alumno.setEstado(true);
         
-        try {
+        
             aludata.agregarAlumno(alumno);
         }catch (NullPointerException npe) {
-            JOptionPane.showMessageDialog(this, "Datos insuficientes para crear un alumno");
+            JOptionPane.showMessageDialog(this, "Datos inválidos o insuficientes para crear un alumno");
         }
         deshabilitarBotones();
     }//GEN-LAST:event_jBGuardarActionPerformed
@@ -313,6 +338,26 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         jRBEstado.setSelected(true);
         deshabilitarBotones();
     }//GEN-LAST:event_jBRestaurarActionPerformed
+
+    private void jTFDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDNIKeyTyped
+       String str = jTFDNI.getText() + evt.getKeyChar();
+                if (!str.matches("\\d*")) {
+                    evt.consume(); // Consumir el evento para evitar que se escriba el carácter
+                }
+
+    }//GEN-LAST:event_jTFDNIKeyTyped
+
+    private void jTFApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFApellidoKeyTyped
+        validarNombres(evt);
+    }//GEN-LAST:event_jTFApellidoKeyTyped
+
+    private void jTFNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreKeyTyped
+        validarNombres(evt);
+    }//GEN-LAST:event_jTFNombreKeyTyped
+
+    private void jTFDNIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDNIKeyReleased
+        validarDNI();
+    }//GEN-LAST:event_jTFDNIKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -362,5 +407,31 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
             jBBorrar.setEnabled(false);
             jBRestaurar.setEnabled(true);
         }
+    }
+     
+    private void validarDNI(){
+        try{
+        int dni = Integer.parseInt(jTFDNI.getText());
+        
+        if(dni > 99999999 || dni<999999){
+            jTFDNI.setToolTipText("DNI Inválido");
+            jTFDNI.setForeground(Color.red);
+            jBGuardar.setEnabled(false);
+            jBActualizar.setEnabled(false);
+        } else {
+            jTFDNI.setForeground(Color.black);
+            jBGuardar.setEnabled(true);
+            jBActualizar.setEnabled(true);
+        }
+        }catch (NumberFormatException nfe) {
+            return;
+        }
+    }
+
+    private void validarNombres(java.awt.event.KeyEvent evt){
+        String str = jTFApellido.getText() + evt.getKeyChar();
+            if (!str.matches("[\\p{L} ']+")) {
+                evt.consume(); // Consumir el evento para evitar que se escriba el carácter
+            }
     }
 }

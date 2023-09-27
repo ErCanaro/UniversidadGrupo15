@@ -88,6 +88,8 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
 
         jLApellido2.setText("Fecha Nac*");
 
+        jDateChooser1.setMaxSelectableDate(new java.util.Date(4102459280000L));
+        jDateChooser1.setMinSelectableDate(new java.util.Date(-2208969712000L));
         jDateChooser1.setMinimumSize(new java.awt.Dimension(146, 32));
 
         jRBEstado.setText("Activo");
@@ -322,6 +324,10 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
     private void jBActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBActualizarActionPerformed
         //Trae al alumno con el ID en pantalla
         Alumno alumno = aludata.buscarAlumnoPorID(Integer.parseInt(jTFidAlumno.getText()));
+        if (jTFApellido.getText().isEmpty() || jTFNombre.getText().isEmpty() || jTFDNI.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Hay campos vacíos");
+            return;
+        }
         //Setea los parámetros del alumno con los datos en pantalla.
         alumno.setDni(Integer.parseInt(jTFDNI.getText()));
         alumno.setApellido(jTFApellido.getText());

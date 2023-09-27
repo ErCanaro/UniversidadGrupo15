@@ -27,6 +27,8 @@ public class VistaMateriaIF extends javax.swing.JInternalFrame {
     public VistaMateriaIF() {
         initComponents();
         deshabilitarBotones();
+        jTFidMateria.requestFocus();
+        inicializarBotones();
     }
 
     /**
@@ -180,6 +182,9 @@ public class VistaMateriaIF extends javax.swing.JInternalFrame {
         jRBEstado.setEnabled(false);
 
         jTFAnio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFAnioKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTFAnioKeyTyped(evt);
             }
@@ -198,6 +203,12 @@ public class VistaMateriaIF extends javax.swing.JInternalFrame {
         jLEstado.setText("Estado");
 
         jLidAlumno.setText("Código");
+
+        jTFNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFNombreKeyReleased(evt);
+            }
+        });
 
         jLayeredPane2.setLayer(jRBEstado, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(jTFAnio, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -301,6 +312,10 @@ public class VistaMateriaIF extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+        if (jTFNombre.getText().isEmpty() || jTFAnio.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Hay campos vacíos");
+            return;
+        }
         Materia materia = new Materia();
              
         materia.setNombre(jTFNombre.getText());
@@ -340,17 +355,23 @@ public class VistaMateriaIF extends javax.swing.JInternalFrame {
                 limpiar();
             }
         deshabilitarBotones();
+        jBActualizar.setEnabled(true);
     }//GEN-LAST:event_jBBuscasActionPerformed
 
     private void jBActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBActualizarActionPerformed
-        //Trae al alumno con el ID en pantalla
+        //Trae la materia con el ID en pantalla
+        
+        if (jTFNombre.getText().isEmpty() || jTFAnio.getText().isEmpty() || jTFidMateria.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Hay campos vacíos");
+            return;
+        }
         Materia materia = matedata.buscarMateriaPorID(Integer.parseInt(jTFidMateria.getText()));
-        //Setea los parámetros del alumno con los datos en pantalla.
+        //Setea los parámetros de la materia con los datos en pantalla.
         materia.setAnio(Integer.parseInt(jTFAnio.getText()));
         materia.setNombre(jTFNombre.getText());
         
 
-        //Asigna los datos en pantalla al alumno
+        //Asigna los datos en pantalla a la materia
         matedata.modificarMateria(materia);
         deshabilitarBotones();
     }//GEN-LAST:event_jBActualizarActionPerformed
@@ -373,6 +394,8 @@ public class VistaMateriaIF extends javax.swing.JInternalFrame {
     private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
         limpiar();
         deshabilitarBotones();
+        jBActualizar.setEnabled(false);
+        
     }//GEN-LAST:event_jBLimpiarActionPerformed
 
     private void jTFAnioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFAnioKeyTyped
@@ -388,6 +411,28 @@ public class VistaMateriaIF extends javax.swing.JInternalFrame {
                     evt.consume(); // Consumir el evento para evitar que se escriba el carácter
                 }
     }//GEN-LAST:event_jTFidMateriaKeyTyped
+
+    private void jTFNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreKeyReleased
+        // TODO add your handling code here:
+        if (!jTFNombre.getText().isEmpty() && !jTFAnio.getText().isEmpty()) {
+            
+            jBGuardar.setEnabled(true);
+        }else{
+        
+            jBGuardar.setEnabled(false);
+        }
+    }//GEN-LAST:event_jTFNombreKeyReleased
+
+    private void jTFAnioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFAnioKeyReleased
+        // TODO add your handling code here:
+        if (!jTFNombre.getText().isEmpty() && !jTFAnio.getText().isEmpty()) {
+            
+            jBGuardar.setEnabled(true);
+        }else{
+        
+            jBGuardar.setEnabled(false);
+        }
+    }//GEN-LAST:event_jTFAnioKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -432,5 +477,13 @@ public class VistaMateriaIF extends javax.swing.JInternalFrame {
             jBBorrar.setEnabled(false);
             jBRestaurar.setEnabled(true);
         }
+    }
+    
+    private void inicializarBotones(){
+    
+        jBGuardar.setEnabled(false);
+        jBActualizar.setEnabled(false);
+        jBBorrar.setEnabled(false);
+        jBRestaurar.setEnabled(false);
     }
 }

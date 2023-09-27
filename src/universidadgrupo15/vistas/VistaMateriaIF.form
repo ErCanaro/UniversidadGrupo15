@@ -265,6 +265,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jTFAnio">
           <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFAnioKeyReleased"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFAnioKeyTyped"/>
           </Events>
         </Component>
@@ -294,6 +295,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFNombre">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFNombreKeyReleased"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

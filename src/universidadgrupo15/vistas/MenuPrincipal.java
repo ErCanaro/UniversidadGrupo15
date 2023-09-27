@@ -14,6 +14,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form MenuPrincipal
      */
+    
     public MenuPrincipal() {
         initComponents();
     }
@@ -39,7 +40,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuConsultas = new javax.swing.JMenu();
         jMIAlumnoPorMateria = new javax.swing.JMenuItem();
-        jMenuSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -129,16 +129,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuConsultas);
 
-        jMenuSalir.setBackground(new java.awt.Color(102, 102, 255));
-        jMenuSalir.setForeground(new java.awt.Color(51, 51, 51));
-        jMenuSalir.setText("Salir");
-        jMenuSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuSalirActionPerformed(evt);
-            }
-        });
-        jMenuBar1.add(jMenuSalir);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -209,10 +199,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
        jDPEscritorio.moveToFront(vn2cb);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jMenuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalirActionPerformed
-       System.exit(0);
-    }//GEN-LAST:event_jMenuSalirActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -261,7 +247,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenu jMenuMateria;
-    private javax.swing.JMenu jMenuSalir;
     // End of variables declaration//GEN-END:variables
 
 

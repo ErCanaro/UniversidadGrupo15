@@ -132,6 +132,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuSalir.setBackground(new java.awt.Color(102, 102, 255));
         jMenuSalir.setForeground(new java.awt.Color(51, 51, 51));
         jMenuSalir.setText("Salir");
+        jMenuSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSalirActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenuSalir);
 
         setJMenuBar(jMenuBar1);
@@ -203,6 +208,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
        jDPEscritorio.add(vn2cb);
        jDPEscritorio.moveToFront(vn2cb);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalirActionPerformed
+       System.exit(0);
+    }//GEN-LAST:event_jMenuSalirActionPerformed
 
     /**
      * @param args the command line arguments

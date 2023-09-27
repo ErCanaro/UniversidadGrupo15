@@ -193,6 +193,9 @@ public class VistaMateriaIF extends javax.swing.JInternalFrame {
         jLDNI.setText("Año");
 
         jTFidMateria.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFidMateriaKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTFidMateriaKeyTyped(evt);
             }
@@ -410,29 +413,27 @@ public class VistaMateriaIF extends javax.swing.JInternalFrame {
                 if (!str.matches("\\d{1,3}")) {
                     evt.consume(); // Consumir el evento para evitar que se escriba el carácter
                 }
+
+               
     }//GEN-LAST:event_jTFidMateriaKeyTyped
 
     private void jTFNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreKeyReleased
-        // TODO add your handling code here:
-        if (!jTFNombre.getText().isEmpty() && !jTFAnio.getText().isEmpty()) {
-            
-            jBGuardar.setEnabled(true);
-        }else{
-        
-            jBGuardar.setEnabled(false);
-        }
+       verificarAnioYNombreVacios();
     }//GEN-LAST:event_jTFNombreKeyReleased
 
     private void jTFAnioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFAnioKeyReleased
-        // TODO add your handling code here:
-        if (!jTFNombre.getText().isEmpty() && !jTFAnio.getText().isEmpty()) {
-            
-            jBGuardar.setEnabled(true);
-        }else{
-        
+        verificarAnioYNombreVacios();
+    }//GEN-LAST:event_jTFAnioKeyReleased
+
+    private void jTFidMateriaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFidMateriaKeyReleased
+        if (jTFidMateria.getText().isEmpty()) {
+            jBActualizar.setEnabled(false);
+            verificarAnioYNombreVacios();
+        }else {
             jBGuardar.setEnabled(false);
         }
-    }//GEN-LAST:event_jTFAnioKeyReleased
+        
+    }//GEN-LAST:event_jTFidMateriaKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -485,5 +486,13 @@ public class VistaMateriaIF extends javax.swing.JInternalFrame {
         jBActualizar.setEnabled(false);
         jBBorrar.setEnabled(false);
         jBRestaurar.setEnabled(false);
+    }
+    
+    private void verificarAnioYNombreVacios() {
+        if (!jTFNombre.getText().isEmpty() && !jTFAnio.getText().isEmpty()) {
+            jBGuardar.setEnabled(true);
+        }else{
+            jBGuardar.setEnabled(false);
+        }
     }
 }
